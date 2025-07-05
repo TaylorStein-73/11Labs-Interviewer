@@ -4,8 +4,8 @@
   "description": "Voice led medical history interviews with AI using ElevenLabs as the Realtime conversation AI.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#FFF2E3",
+  "theme_color": "#005459",
   "orientation": "portrait-primary",
   "icons": [
     {

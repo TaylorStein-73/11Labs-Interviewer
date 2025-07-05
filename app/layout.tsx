@@ -46,7 +46,7 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: '#000000',
+  themeColor: '#005459',
 }
 
 export default function ({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -63,7 +63,7 @@ export default function ({ children }: Readonly<{ children: React.ReactNode }>) 
         <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
         <link rel="icon" type="image/png" sizes="384x384" href="/icons/icon-384x384.png" />
         <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512x512.png" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#005459" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Pulse" />
