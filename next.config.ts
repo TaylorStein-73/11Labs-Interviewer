@@ -1,8 +1,27 @@
 import type { NextConfig } from 'next'
 
+// @ts-ignore
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  runtimeCaching: [
+    {
+      urlPattern: /^https?.*/,
+      handler: 'NetworkFirst',
+      options: {
+        cacheName: 'offlineCache',
+        expiration: {
+          maxEntries: 200,
+        },
+      },
+    },
+  ],
+})
+
 const allowedBots = '.*(bot|telegram|baidu|bing|yandex|iframely|whatsapp|facebook).*'
 
-export default {
+const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
@@ -12,4 +31,6 @@ export default {
       },
     ]
   },
-} as NextConfig
+}
+
+export default withPWA(nextConfig)
