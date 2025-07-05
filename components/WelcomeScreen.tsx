@@ -1,13 +1,60 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Shield, Clock, UserCheck } from 'react-feather'
+import { ArrowRight, Shield, Clock, UserCheck, Smartphone, Download } from 'react-feather'
+import { useEffect, useState } from 'react'
 
 interface WelcomeScreenProps {
   onStartInterview: () => void
 }
 
 export default function WelcomeScreen({ onStartInterview }: WelcomeScreenProps) {
+  const [showInstallPrompt, setShowInstallPrompt] = useState(false)
+  const [isIOS, setIsIOS] = useState(false)
+  const [isAndroid, setIsAndroid] = useState(false)
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null)
+  const [showInstallButton, setShowInstallButton] = useState(false)
+
+  useEffect(() => {
+    // Detect mobile platform
+    const userAgent = navigator.userAgent.toLowerCase()
+    const isIOSDevice = /iphone|ipad|ipod/.test(userAgent)
+    const isAndroidDevice = /android/.test(userAgent)
+    
+    setIsIOS(isIOSDevice)
+    setIsAndroid(isAndroidDevice)
+    
+    // Show install prompt for mobile users
+    if (isIOSDevice || isAndroidDevice) {
+      setShowInstallPrompt(true)
+    }
+
+    // Handle beforeinstallprompt event (Chrome/Edge)
+    const handleBeforeInstallPrompt = (e: any) => {
+      e.preventDefault()
+      setDeferredPrompt(e)
+      setShowInstallButton(true)
+    }
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+    }
+  }, [])
+
+  const handleInstallClick = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt()
+      const { outcome } = await deferredPrompt.userChoice
+      if (outcome === 'accepted') {
+        setShowInstallButton(false)
+        setShowInstallPrompt(false)
+      }
+      setDeferredPrompt(null)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-brand-secondary flex items-center justify-center p-4">
       <motion.div
@@ -82,11 +129,52 @@ export default function WelcomeScreen({ onStartInterview }: WelcomeScreenProps) 
           </motion.div>
         </div>
 
+        {/* Install App Prompt for Mobile */}
+        {showInstallPrompt && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6"
+          >
+            <div className="flex items-start space-x-3">
+              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <Smartphone className="w-4 h-4 text-blue-600" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold text-blue-900 mb-1">Install App for Better Experience</h3>
+                {isIOS ? (
+                  <p className="text-blue-800 text-sm">
+                    Tap the <strong>Share</strong> button in Safari, then select <strong>"Add to Home Screen"</strong> to install this app.
+                  </p>
+                ) : isAndroid ? (
+                  <p className="text-blue-800 text-sm">
+                    Look for the <strong>"Install"</strong> option in your browser menu (⋮) or address bar to add this app to your home screen.
+                  </p>
+                ) : (
+                  <p className="text-blue-800 text-sm">
+                    Install this app for a better mobile experience and offline access.
+                  </p>
+                )}
+                {showInstallButton && (
+                  <button
+                    onClick={handleInstallClick}
+                    className="mt-3 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2 hover:bg-blue-700 transition-colors"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Install App</span>
+                  </button>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
         {/* What to expect */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
+          transition={{ delay: 0.7, duration: 0.5 }}
           className="bg-brand-secondary rounded-lg p-4 mb-8"
         >
           <h3 className="font-semibold text-primary mb-2">What to expect:</h3>
@@ -102,7 +190,7 @@ export default function WelcomeScreen({ onStartInterview }: WelcomeScreenProps) 
         <motion.button
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.7, duration: 0.5 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={onStartInterview}
@@ -116,7 +204,7 @@ export default function WelcomeScreen({ onStartInterview }: WelcomeScreenProps) 
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
+          transition={{ delay: 0.9, duration: 0.5 }}
           className="text-center text-gray-500 text-xs mt-4"
         >
           By starting the interview, you agree to our privacy policy and terms of service.
