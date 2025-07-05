@@ -1,3 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* EngagedMD Brand Colors - Official Guidelines */
+:root {
+  /* Primary Brand Colors */
+  --color-primary: #005459; /* Dark Green - Primary brand color */
+  --color-secondary: #FFF2E3; /* Cream - Secondary brand color */
+  
+  /* Accent Colors (use sparingly, up to 10% of visible space) */
+  --color-accent-pink: #F54FB0; /* Pink accent */
+  --color-accent-teal: #05C9BF; /* Teal accent */
+  --color-accent-orange: #FF9663; /* Orange accent */
+  
+  /* Text Colors - Following accessibility guidelines */
+  --color-text-primary: #005459; /* Dark green for text */
+  --color-text-secondary: #343C44; /* Gray for body text on white backgrounds */
+  --color-text-on-cream: #005459; /* Dark green text works on cream */
+  --color-text-on-accents: #FFF2E3; /* Cream text works on accent colors */
+  
+  /* Background Colors - 90% of visible space should use these */
+  --color-bg-primary: #005459; /* Dark green background */
+  --color-bg-secondary: #FFF2E3; /* Cream background */
+  --color-bg-white: #FFFFFF; /* White for content-heavy applications */
+  
+  /* Status Colors */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  
+  /* Shadows and Borders */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --border-radius: 0.5rem;
+}
+
+/* Base styles following EngagedMD guidelines */
+body {
+  font-family: 'Inter', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-white);
+  line-height: 1.6;
+}
+
+/* EngagedMD Component Styles */
+@layer components {
+  /* Medical Interface Components - Updated with brand colors */
+  .medical-card {
+    @apply bg-white border border-gray-200 rounded-lg p-6 shadow-sm;
+    background-color: var(--color-bg-white);
+    border-color: #e5e7eb;
+  }
+  
+  .medical-card-primary {
+    background-color: var(--color-bg-secondary); /* Cream background */
+    border-color: var(--color-primary);
+    color: var(--color-text-on-cream);
+  }
+  
+  .medical-card-accent {
+    background-color: var(--color-accent-teal);
+    color: var(--color-text-on-accents);
+  }
+
+  /* Primary Button - Dark Green */
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-bg-white);
+    @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
+  }
+  
+  .btn-primary:hover {
+    background-color: #003438; /* Darker shade */
+  }
+
+  /* Secondary Button - Cream */
+  .btn-secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-text-on-cream);
+    border: 1px solid var(--color-primary);
+    @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #feecd4; /* Slightly darker cream */
+  }
+
+  /* Accent Buttons - Use sparingly */
+  .btn-accent-teal {
+    background-color: var(--color-accent-teal);
+    color: var(--color-text-on-accents);
+    @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
+  }
+  
+  .btn-accent-orange {
+    background-color: var(--color-accent-orange);
+    color: var(--color-text-on-accents);
+    @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
+  }
+  
+  .btn-accent-pink {
+    background-color: var(--color-accent-pink);
+    color: var(--color-text-on-accents);
+    @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
+  }
+
+  /* Form Elements */
+  .form-input {
+    @apply w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 transition-colors duration-200;
+    border-color: #d1d5db;
+  }
+  
+  .form-input:focus {
+    @apply ring-2;
+    --tw-ring-color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium mb-2;
+    color: var(--color-text-primary);
+  }
+
+  /* Status Indicators */
+  .status-success {
+    @apply flex items-center px-3 py-2 rounded-md text-sm font-medium;
+    background-color: #dcfce7;
+    color: #166534;
+  }
+  
+  .status-warning {
+    @apply flex items-center px-3 py-2 rounded-md text-sm font-medium;
+    background-color: #fef3c7;
+    color: #92400e;
+  }
+  
+  .status-error {
+    @apply flex items-center px-3 py-2 rounded-md text-sm font-medium;
+    background-color: #fee2e2;
+    color: #991b1b;
+  }
+
+  /* Navigation and Headers */
+  .nav-primary {
+    background-color: var(--color-primary);
+    color: var(--color-bg-white);
+  }
+  
+  .nav-secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-text-on-cream);
+  }
+
+  /* Text Utilities - Following accessibility guidelines */
+  .text-primary {
+    color: var(--color-text-primary);
+  }
+  
+  .text-on-cream {
+    color: var(--color-text-on-cream);
+  }
+  
+  .text-on-accent {
+    color: var(--color-text-on-accents);
+  }
+
+  /* Background Utilities - 90% rule compliance */
+  .bg-brand-primary {
+    background-color: var(--color-primary);
+  }
+  
+  .bg-brand-secondary {
+    background-color: var(--color-secondary);
+  }
+  
+  /* Accent Backgrounds - Use sparingly (up to 10% of visible space) */
+  .bg-accent-teal {
+    background-color: var(--color-accent-teal);
+  }
+  
+  .bg-accent-orange {
+    background-color: var(--color-accent-orange);
+  }
+  
+  .bg-accent-pink {
+    background-color: var(--color-accent-pink);
+  }
+
+  /* Medical Interface Specific Components */
+  .patient-card {
+    @apply medical-card;
+    border-left: 4px solid var(--color-primary);
+  }
+  
+  .appointment-card {
+    @apply medical-card-primary;
+  }
+  
+  .alert-card {
+    @apply medical-card;
+    border-left: 4px solid var(--color-accent-orange);
+  }
+
+  /* Interview Interface */
+  .interview-question {
+    @apply medical-card-primary p-6 mb-4;
+  }
+  
+  .interview-progress {
+    background-color: var(--color-secondary);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .interview-progress-bar {
+    background-color: var(--color-primary);
+    height: 100%;
+    transition: width 0.3s ease;
+  }
+}
+
+/* Typography Scale */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* Focus States - Accessibility */
+*:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Print Styles - Use CMYK values for print */
+@media print {
+  :root {
+    --color-primary: black;
+    --color-secondary: white;
+    --color-text-primary: black;
+    --color-text-secondary: black;
+  }
+}

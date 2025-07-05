@@ -1,0 +1,260 @@
+2025-07-04T12:49:53.880Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633393880}
+2025-07-04T12:49:54.878Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633394878}
+2025-07-04T12:49:55.877Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633395877}
+2025-07-04T12:49:56.882Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633396882}
+2025-07-04T12:49:57.333Z - Thinking state SET
+2025-07-04T12:49:57.335Z - Thinking state CLEARED
+2025-07-04T12:49:57.878Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633397335,"age":543}
+2025-07-04T12:49:58.878Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633397335,"age":1543}
+2025-07-04T12:49:59.876Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633397335,"age":2541}
+2025-07-04T12:50:00.875Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633397335,"age":3540}
+2025-07-04T12:50:01.878Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633397335,"age":4543}
+2025-07-04T12:50:02.881Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633397335,"age":5546}
+2025-07-04T12:52:09.904Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633529904}
+2025-07-04T12:52:10.046Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633530046}
+2025-07-04T12:52:10.300Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633530300}
+2025-07-04T12:52:10.551Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633530551}
+2025-07-04T12:52:10.802Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633530802}
+2025-07-04T12:52:11.049Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633531049}
+2025-07-04T12:52:11.300Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633531300}
+2025-07-04T12:52:11.549Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633531549}
+2025-07-04T12:52:11.799Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633531799}
+2025-07-04T12:52:28.388Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633548388}
+2025-07-04T12:52:28.623Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633548623}
+2025-07-04T12:52:28.879Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633548879}
+2025-07-04T12:52:29.122Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633549121}
+2025-07-04T12:52:29.379Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633549379}
+2025-07-04T12:52:29.625Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633549625}
+2025-07-04T12:52:29.876Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633549876}
+2025-07-04T12:52:30.126Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633550126}
+2025-07-04T12:52:30.369Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633550369}
+2025-07-04T12:52:30.629Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633550629}
+2025-07-04T12:52:30.872Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633550872}
+2025-07-04T12:52:31.129Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633551129}
+2025-07-04T12:52:31.369Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633551369}
+2025-07-04T12:52:31.618Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633551618}
+2025-07-04T12:52:31.944Z - Thinking state SET
+2025-07-04T12:52:31.956Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633551944,"age":12}
+2025-07-04T12:52:32.114Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633551944,"age":170}
+2025-07-04T12:52:32.363Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633551944,"age":419}
+2025-07-04T12:52:32.615Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633551944,"age":671}
+2025-07-04T12:52:32.842Z - Thinking state CLEARED
+2025-07-04T12:52:32.865Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":23}
+2025-07-04T12:52:33.128Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":286}
+2025-07-04T12:52:33.365Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":523}
+2025-07-04T12:52:33.620Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":778}
+2025-07-04T12:52:33.866Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":1024}
+2025-07-04T12:52:34.121Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":1279}
+2025-07-04T12:52:34.367Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":1525}
+2025-07-04T12:52:34.620Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":1778}
+2025-07-04T12:52:34.865Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":2023}
+2025-07-04T12:52:35.118Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":2276}
+2025-07-04T12:52:35.366Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":2524}
+2025-07-04T12:52:35.619Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":2777}
+2025-07-04T12:52:35.879Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":3037}
+2025-07-04T12:52:36.123Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":3281}
+2025-07-04T12:52:36.363Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":3521}
+2025-07-04T12:52:36.618Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":3776}
+2025-07-04T12:52:36.863Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":4021}
+2025-07-04T12:52:37.132Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":4290}
+2025-07-04T12:52:37.380Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":4538}
+2025-07-04T12:52:37.630Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":4788}
+2025-07-04T12:52:37.866Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":5024}
+2025-07-04T12:52:38.126Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":5284}
+2025-07-04T12:52:38.377Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":5535}
+2025-07-04T12:52:38.629Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":5787}
+2025-07-04T12:52:38.881Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":6039}
+2025-07-04T12:52:39.128Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633552842,"age":6286}
+2025-07-04T12:52:39.156Z - Thinking state SET
+2025-07-04T12:52:39.378Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633559156,"age":222}
+2025-07-04T12:52:39.629Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633559156,"age":473}
+2025-07-04T12:52:39.878Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633559156,"age":722}
+2025-07-04T12:52:40.095Z - Thinking state CLEARED
+2025-07-04T12:52:40.123Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":28}
+2025-07-04T12:52:40.376Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":281}
+2025-07-04T12:52:40.627Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":532}
+2025-07-04T12:52:40.881Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":786}
+2025-07-04T12:52:41.130Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":1035}
+2025-07-04T12:52:41.383Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":1288}
+2025-07-04T12:52:41.630Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":1535}
+2025-07-04T12:52:41.878Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":1783}
+2025-07-04T12:52:42.130Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":2035}
+2025-07-04T12:52:42.380Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":2285}
+2025-07-04T12:52:42.627Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":2532}
+2025-07-04T12:52:42.865Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":2770}
+2025-07-04T12:52:43.130Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":3035}
+2025-07-04T12:52:43.379Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":3284}
+2025-07-04T12:52:43.630Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":3535}
+2025-07-04T12:52:43.877Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":3782}
+2025-07-04T12:52:44.129Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":4034}
+2025-07-04T12:52:44.380Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":4285}
+2025-07-04T12:52:44.630Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":4535}
+2025-07-04T12:52:44.879Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":4784}
+2025-07-04T12:52:45.131Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":5036}
+2025-07-04T12:52:45.380Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":5285}
+2025-07-04T12:52:45.627Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":5532}
+2025-07-04T12:52:45.878Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":5783}
+2025-07-04T12:52:46.130Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":6035}
+2025-07-04T12:52:46.379Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":6284}
+2025-07-04T12:52:46.627Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":6532}
+2025-07-04T12:52:46.878Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":6783}
+2025-07-04T12:52:47.128Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":7033}
+2025-07-04T12:52:47.380Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":7285}
+2025-07-04T12:52:47.626Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":7531}
+2025-07-04T12:52:47.864Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":7769}
+2025-07-04T12:52:48.130Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":8035}
+2025-07-04T12:52:48.379Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":8284}
+2025-07-04T12:52:48.626Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":8531}
+2025-07-04T12:52:48.882Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":8787}
+2025-07-04T12:52:49.129Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":9034}
+2025-07-04T12:52:49.377Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":9282}
+2025-07-04T12:52:49.627Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":9532}
+2025-07-04T12:52:49.881Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":9786}
+2025-07-04T12:52:50.129Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":10034}
+2025-07-04T12:52:50.379Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":10284}
+2025-07-04T12:52:50.632Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":10537}
+2025-07-04T12:52:50.875Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":10780}
+2025-07-04T12:52:51.130Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":11035}
+2025-07-04T12:52:51.380Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":11285}
+2025-07-04T12:52:51.626Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":11531}
+2025-07-04T12:52:51.880Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":11785}
+2025-07-04T12:52:52.130Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":12035}
+2025-07-04T12:52:52.383Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633560095,"age":12288}
+2025-07-04T12:52:52.389Z - Thinking state SET
+2025-07-04T12:52:52.630Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633572389,"age":241}
+2025-07-04T12:52:52.865Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633572389,"age":476}
+2025-07-04T12:52:53.113Z - Thinking state CLEARED
+2025-07-04T12:52:53.120Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633573112,"age":8}
+2025-07-04T12:52:53.377Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633573112,"age":265}
+2025-07-04T12:52:53.632Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633573112,"age":520}
+2025-07-04T12:52:53.876Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633573112,"age":764}
+2025-07-04T12:52:54.130Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633573112,"age":1018}
+2025-07-04T12:52:54.379Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633573112,"age":1267}
+2025-07-04T12:52:54.630Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633573112,"age":1518}
+2025-07-04T12:52:54.879Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633573112,"age":1767}
+2025-07-04T12:52:55.128Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633573112,"age":2016}
+2025-07-04T12:52:55.375Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633573112,"age":2263}
+2025-07-04T12:52:55.625Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633573112,"age":2513}
+2025-07-04T12:52:55.878Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633573112,"age":2766}
+2025-07-04T12:53:28.344Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633608344}
+2025-07-04T12:53:28.592Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633608592}
+2025-07-04T12:53:28.843Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633608843}
+2025-07-04T12:53:29.091Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633609091}
+2025-07-04T12:53:29.342Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633609342}
+2025-07-04T12:53:29.593Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633609593}
+2025-07-04T12:53:29.842Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633609842}
+2025-07-04T12:53:30.092Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633610092}
+2025-07-04T12:53:30.343Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633610343}
+2025-07-04T12:53:30.594Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633610594}
+2025-07-04T12:53:30.844Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633610844}
+2025-07-04T12:53:31.092Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633611092}
+2025-07-04T12:53:31.334Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633611334}
+2025-07-04T12:53:31.593Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633611593}
+2025-07-04T12:53:31.831Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633611831}
+2025-07-04T12:53:32.093Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633612093}
+2025-07-04T12:53:32.343Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633612343}
+2025-07-04T12:53:32.595Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633612595}
+2025-07-04T12:53:32.844Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633612844}
+2025-07-04T12:53:33.094Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633613094}
+2025-07-04T12:53:33.344Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633613344}
+2025-07-04T12:53:33.593Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633613593}
+2025-07-04T12:53:33.847Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633613847}
+2025-07-04T12:53:34.093Z - Thinking state CHECKED: {"thinking":false,"timestamp":0,"age":1751633614093}
+2025-07-04T12:53:34.146Z - Thinking state SET
+2025-07-04T12:53:34.342Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633614146,"age":196}
+2025-07-04T12:53:34.595Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633614146,"age":449}
+2025-07-04T12:53:34.845Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633614146,"age":699}
+2025-07-04T12:53:35.095Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633614146,"age":949}
+2025-07-04T12:53:35.228Z - Thinking state CLEARED
+2025-07-04T12:53:35.343Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":115}
+2025-07-04T12:53:35.593Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":365}
+2025-07-04T12:53:35.843Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":615}
+2025-07-04T12:53:36.092Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":864}
+2025-07-04T12:53:36.335Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":1107}
+2025-07-04T12:53:36.594Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":1366}
+2025-07-04T12:53:36.831Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":1603}
+2025-07-04T12:53:37.093Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":1865}
+2025-07-04T12:53:37.345Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":2117}
+2025-07-04T12:53:37.593Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":2365}
+2025-07-04T12:53:37.845Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":2617}
+2025-07-04T12:53:38.093Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":2865}
+2025-07-04T12:53:38.344Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":3116}
+2025-07-04T12:53:38.595Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":3367}
+2025-07-04T12:53:38.846Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":3618}
+2025-07-04T12:53:39.094Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":3866}
+2025-07-04T12:53:39.344Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633615228,"age":4116}
+2025-07-04T12:53:39.531Z - Thinking state SET
+2025-07-04T12:53:39.587Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633619530,"age":57}
+2025-07-04T12:53:39.842Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633619530,"age":312}
+2025-07-04T12:53:40.091Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633619530,"age":561}
+2025-07-04T12:53:40.343Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633619530,"age":813}
+2025-07-04T12:53:40.594Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633619530,"age":1064}
+2025-07-04T12:53:40.697Z - Thinking state CLEARED
+2025-07-04T12:53:40.843Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":146}
+2025-07-04T12:53:41.094Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":397}
+2025-07-04T12:53:41.334Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":637}
+2025-07-04T12:53:41.593Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":896}
+2025-07-04T12:53:41.829Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":1132}
+2025-07-04T12:53:42.095Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":1398}
+2025-07-04T12:53:42.346Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":1649}
+2025-07-04T12:53:42.592Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":1895}
+2025-07-04T12:53:42.843Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":2146}
+2025-07-04T12:53:43.095Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":2398}
+2025-07-04T12:53:43.346Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":2649}
+2025-07-04T12:53:43.592Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":2895}
+2025-07-04T12:53:43.843Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":3146}
+2025-07-04T12:53:44.092Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":3395}
+2025-07-04T12:53:44.345Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":3648}
+2025-07-04T12:53:44.595Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":3898}
+2025-07-04T12:53:44.844Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":4147}
+2025-07-04T12:53:45.098Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":4401}
+2025-07-04T12:53:45.343Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":4646}
+2025-07-04T12:53:45.593Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":4896}
+2025-07-04T12:53:45.845Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":5148}
+2025-07-04T12:53:46.094Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":5397}
+2025-07-04T12:53:46.334Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":5637}
+2025-07-04T12:53:46.596Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":5899}
+2025-07-04T12:53:46.832Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":6135}
+2025-07-04T12:53:47.093Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":6396}
+2025-07-04T12:53:47.347Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":6650}
+2025-07-04T12:53:47.592Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":6895}
+2025-07-04T12:53:47.851Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633620697,"age":7154}
+2025-07-04T12:53:47.853Z - Thinking state SET
+2025-07-04T12:53:48.094Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633627853,"age":241}
+2025-07-04T12:53:48.339Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633627853,"age":486}
+2025-07-04T12:53:48.592Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633627853,"age":739}
+2025-07-04T12:53:48.844Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633627853,"age":991}
+2025-07-04T12:53:49.095Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633627853,"age":1242}
+2025-07-04T12:53:49.341Z - Thinking state CHECKED: {"thinking":true,"timestamp":1751633627853,"age":1488}
+2025-07-04T12:53:49.515Z - Thinking state CLEARED
+2025-07-04T12:53:49.593Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633629515,"age":78}
+2025-07-04T12:53:49.832Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633629515,"age":317}
+2025-07-04T12:53:50.085Z - Thinking state CHECKED: {"thinking":false,"timestamp":1751633629515,"age":570}
+2025-07-04T12:55:47.170Z - Thinking state SET
+2025-07-04T12:55:48.240Z - Thinking state CLEARED
+2025-07-04T12:55:52.381Z - Thinking state SET
+2025-07-04T12:55:53.726Z - Thinking state CLEARED
+2025-07-04T12:56:02.027Z - Thinking state SET
+2025-07-04T12:56:03.000Z - Thinking state CLEARED
+2025-07-04T12:56:14.444Z - Thinking state SET
+2025-07-04T12:56:14.449Z - Thinking state CLEARED
+2025-07-04T12:56:21.475Z - Thinking state SET
+2025-07-04T12:56:21.483Z - Thinking state CLEARED
+2025-07-04T12:56:28.065Z - Thinking state SET
+2025-07-04T12:56:28.070Z - Thinking state CLEARED
+2025-07-04T12:56:45.466Z - Thinking state SET
+2025-07-04T12:56:46.370Z - Thinking state CLEARED
+2025-07-04T12:56:51.485Z - Thinking state SET
+2025-07-04T12:56:52.518Z - Thinking state CLEARED
+2025-07-04T12:57:00.264Z - Thinking state SET
+2025-07-04T12:57:01.130Z - Thinking state CLEARED
+2025-07-04T12:57:14.267Z - Thinking state SET
+2025-07-04T12:57:14.276Z - Thinking state CLEARED
+2025-07-04T12:58:45.727Z - Thinking state SET
+2025-07-04T12:58:46.770Z - Thinking state CLEARED
+2025-07-04T12:58:49.985Z - Thinking state SET
+2025-07-04T12:58:51.538Z - Thinking state CLEARED
+2025-07-04T12:58:58.227Z - Thinking state SET
+2025-07-04T12:58:59.173Z - Thinking state CLEARED
+2025-07-04T12:59:10.965Z - Thinking state SET
+2025-07-04T12:59:11.778Z - Thinking state CLEARED

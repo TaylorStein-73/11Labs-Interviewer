@@ -1,0 +1,131 @@
+# pregnancyStates.yaml
+- id: 0_greeting
+  description: "What brings you to our clinic?"
+  instructions:
+    - Start with: "Hello, I'm Dr. Stein's AI assistant. I'd like to ask you a few questions to better understand your situation and how we can help you. This will help us ensure we're prepared for your upcoming appointment. What brings you to {clinic_name} today?"
+  examples:
+    - Hello, I'm Dr. Stein's AI assistant. I'd like to ask you a few questions to better understand your situation and how we can help you. This will help us ensure we're prepared for your upcoming appointment. What brings you to {clinic_name} today?
+  transitions:
+    - next_step: pregnancy/1_ever_pregnant
+      condition: After delivering the greeting.
+
+
+
+# ------------------------------------------------------------
+# Pregnancy History Section
+# ------------------------------------------------------------
+
+pregnancy_history:
+  - id: pregnancy/1_ever_pregnant
+    description: "Determine if the patient has ever been pregnant."
+    instructions:
+      - Politely ask: "Have you ever been pregnant?"
+    examples:
+      - Have you ever been pregnant?
+    transitions:
+      - next_step: pregnancy/2_total_pregnancies
+        condition: "If answer is yes"
+      - next_step: interview_complete
+        condition: "If answer is no"
+
+  - id: pregnancy/2_total_pregnancies
+    description: "Ask total number of pregnancies."
+    instructions:
+      - Politely ask: "How many pregnancies have you had in total?"
+    examples:
+      - How many pregnancies have you had?
+    transitions:
+      - next_step: pregnancy/3_pregnancy_loop
+        condition: "Once total pregnancies are confirmed"
+
+  - id: pregnancy/3_pregnancy_loop
+    description: "Collect detailed information for each pregnancy."
+    instructions:
+      - For each pregnancy, confirm: "Let's discuss your pregnancy #[number]."
+      - Ask: "What was the outcome (live birth, miscarriage, stillbirth, ectopic, termination, ongoing)?"
+    examples:
+      - What was the outcome of your pregnancy?
+    transitions:
+      - next_step: pregnancy/4_outcome_specific
+        condition: "Once outcome is identified"
+
+  - id: pregnancy/4_outcome_specific
+    description: "Ask specific follow-up questions based on pregnancy outcome."
+    instructions:
+      - If live birth:
+          - Ask delivery mode, birth weight, maternal/neonatal complications.
+      - If miscarriage:
+          - Ask gestational age at loss, management, products tested.
+      - If stillbirth:
+          - Ask gestational age, cause.
+      - If ectopic:
+          - Ask location, treatment.
+      - If termination:
+          - Ask gestational age, reason, method.
+      - If ongoing:
+          - Ask current gestational age, complications.
+    examples:
+      - For live birth: "Was the delivery vaginal or via C-section?"
+      - For miscarriage: "How was your miscarriage managed?"
+    transitions:
+      - next_step: pregnancy/5_another_pregnancy
+        condition: "After specific outcome details are collected"
+
+  - id: pregnancy/5_another_pregnancy
+    description: "Check if the patient has another pregnancy to report."
+    instructions:
+      - Politely ask: "Do you have another pregnancy to add?"
+    examples:
+      - Do you have another pregnancy to add?
+    transitions:
+      - next_step: pregnancy/3_pregnancy_loop
+        condition: "If answer is yes"
+      - next_step: pregnancy/6_global_history
+        condition: "If answer is no"
+
+  - id: pregnancy/6_global_history
+    description: "Collect history-wide questions across all pregnancies."
+    instructions:
+      - Ask about history of gestational diabetes, high blood pressure, cholestasis, blood clots, or cerclage.
+    examples:
+      - Did you have gestational diabetes or high blood pressure during any pregnancy?
+    transitions:
+      - next_step: lifestyle/1_smoking_status
+        condition: "Once global pregnancy history confirmed"
+
+# ------------------------------------------------------------
+# Lifestyle / Exposure Section
+# ------------------------------------------------------------
+
+lifestyle_exposure:
+  - id: lifestyle/1_substance_use
+    description: "Assess smoking, alcohol, and cannabis/recreational drug use."
+    instructions:
+      - Politely ask: "Do you currently smoke, drink alcohol, or use cannabis/recreational drugs? (yes/no)"
+      - If yes, follow up individually:
+          - Smoking: "Do you smoke or vape tobacco/nicotine products? If yes, how many per day and for how many years?"
+          - Alcohol: "Do you drink alcohol? If yes, how many alcoholic drinks do you have per week?"
+          - Cannabis/Drugs: "Do you use cannabis or recreational drugs? If yes, please specify the substances and frequency of use."
+    examples:
+      - Do you smoke, drink alcohol, or use recreational drugs?
+    transitions:
+      - next_step: interview_complete
+        condition: "Once substance use (and any details) confirmed"
+
+# ------------------------------------------------------------
+# Interview Completion
+# ------------------------------------------------------------
+
+- id: interview_complete
+  description: "Complete the interview and show the summary."
+  instructions:
+    - "Call generate_interview_summary with an empty tasks array to create the final SOAP note."
+    - "CRITICAL: Call complete_interview with the summary and an empty tasks array to trigger the completion state."
+    - "Thank the patient warmly and conclude the call."
+  examples:
+    - "Thank you for your time today. I've recorded your information for Dr. Stein to review. We look forward to seeing you soon."
+  transitions:
+    - next_step: null
+      condition: "After summary is generated and patient is thanked"
+
+

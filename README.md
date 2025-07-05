@@ -1,6 +1,6 @@
 # Pulse - AI Conversation Interface
 
-A modern, interactive AI conversation interface built with Next.js, Neon and ElevenLabs. This application provides a seamless way to have voice conversations with an AI assistant and sync them in your serverless Postgres.
+A modern, interactive AI conversation interface built with Next.js and ElevenLabs. This application provides a seamless way to have voice conversations with an AI assistant.
 
 <img src="https://github.com/user-attachments/assets/1267a85c-d35a-4779-8d7f-a07f4aa1ec7a" />
 
@@ -9,7 +9,6 @@ A modern, interactive AI conversation interface built with Next.js, Neon and Ele
 - Real-time voice conversations with AI
 - Beautiful animated interface
 - Dark mode support
-- Persistent conversation history
 - Edge runtime support
 - Responsive design
 
@@ -18,7 +17,6 @@ A modern, interactive AI conversation interface built with Next.js, Neon and Ele
 - **Framework**: [Next.js](https://nextjs.org/) 15
 - **Styling**: [Tailwind](https://tailwindcss.com/)
 - **Animation**: Framer Motion
-- **Database**: [Neon](https://neon.tech/)
 - **AI Integration**: [ElevenLabs API](https://elevenlabs.io/docs/conversational-ai/docs/introduction)
 
 ## 📦 Installation
@@ -30,7 +28,7 @@ git clone https://github.com/neondatabase-labs/pulse
 cd pulse
 ```
 
-2. Run `npm install` and `npm run schema` to install dependencies and set the relevant schema in your Neon database.
+2. Run `npm install` to install dependencies.
 
 3. Create a `.env` file in the root directory with the following variables:
 
@@ -39,8 +37,6 @@ cd pulse
 AGENT_ID="..."
 # Grab API Key from https://elevenlabs.io/app/settings/api-keys
 XI_API_KEY="..."
-# Grab a connection string from https://console.neon.tech
-DATABASE_URL="postgresql://neondb_owner:...@ep-...us-east-1.aws.neon.tech/neondb?sslmode=require"
 ```
 
 4. Run the development server:
@@ -58,7 +54,6 @@ npm run dev
 
 ## 🔑 Environment Variables
 
-- `DATABASE_URL`: Neon database connection string
 - `XI_API_KEY`: ElevenLabs API key
 - `AGENT_ID`: ElevenLabs agent ID
 
@@ -72,7 +67,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [ElevenLabs](https://elevenlabs.io/)
 - [Framer Motion](https://www.framer.com/motion/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [Neon Database](https://neon.tech/)
 
 # Authors
 
