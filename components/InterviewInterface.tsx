@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTypingEffect } from '@/components/useTypingEffect'
-import { X, Square } from 'react-feather'
+import { Square } from 'react-feather'
 import { useState, useEffect } from 'react'
 import ProgressTracker from '@/components/ProgressTracker'
 
@@ -131,7 +131,6 @@ export default function InterviewInterface({
   messages,
   isConnected
 }: InterviewInterfaceProps) {
-  const [showEndButton, setShowEndButton] = useState(false)
   const [userMessageTrigger, setUserMessageTrigger] = useState(0)
   const animatedCurrentText = useTypingEffect(currentText, 30)
 
@@ -142,13 +141,6 @@ export default function InterviewInterface({
                  message.content.trim() !== ''
   )
 
-  // Show end button after 5 conversation exchanges
-  useEffect(() => {
-    if (conversationMessages.length >= 10) {
-      setShowEndButton(true)
-    }
-  }, [conversationMessages.length])
-
   // Trigger sonar pulse when user sends a message
   useEffect(() => {
     const userMessages = conversationMessages.filter(msg => msg.role === 'user')
@@ -156,14 +148,6 @@ export default function InterviewInterface({
       setUserMessageTrigger(userMessages.length)
     }
   }, [conversationMessages])
-
-  const handleMicClick = () => {
-    if (isConnected) {
-      onStopListening()
-    } else {
-      onStartListening()
-    }
-  }
 
   // Determine visual states
   const isListening = isConnected && !isAudioPlaying
@@ -174,32 +158,6 @@ export default function InterviewInterface({
 
   return (
     <div className="min-h-screen bg-white flex flex-col relative">
-      {/* Header - minimal */}
-      <div className="absolute top-0 left-0 right-0 z-10">
-        <div className="flex items-center justify-between p-6">
-          <div className="flex items-center space-x-3">
-            <div className={`w-3 h-3 rounded-full animate-pulse ${
-              'bg-green-500'
-            }`} />
-            <span className="text-sm text-gray-600 font-medium">
-              {isConnected ? 'Connected' : 'Connecting...'}
-            </span>
-          </div>
-          
-          {showEndButton && (
-            <motion.button
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              onClick={onEndInterview}
-              className="p-3 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
-              title="End Interview"
-            >
-              <X className="w-5 h-5 text-gray-600" />
-            </motion.button>
-          )}
-        </div>
-      </div>
-
       {/* Progress Tracker */}
       <ProgressTracker messages={messages} />
 
@@ -232,8 +190,6 @@ export default function InterviewInterface({
           </motion.div>
         )}
       </AnimatePresence>
-
-
 
       {/* Bottom Controls */}
       <div className="absolute bottom-0 left-0 right-0 p-6">

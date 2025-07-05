@@ -204,7 +204,7 @@ export default function ProgressTracker({ messages }: ProgressTrackerProps) {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="absolute top-20 left-6 z-20"
+      className="absolute top-6 left-6 z-20"
     >
       <div className="">
         <div className="space-y-3">

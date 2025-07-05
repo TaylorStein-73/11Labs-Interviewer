@@ -83,7 +83,6 @@ export function useElevenLabsSession(onSessionEnd?: () => void): UseElevenLabsSe
     onConnect: () => {
       console.log('ElevenLabs session connected')
       console.log('Conversation object after connect:', conversation)
-      toast('Connected to your care team.')
       setStatus('connected')
       hasConnectedRef.current = true
       isConnectingRef.current = false
