@@ -157,7 +157,7 @@ export default function InterviewInterface({
 
 
   return (
-    <div className="min-h-screen bg-white flex flex-col relative">
+    <div className="min-h-screen bg-brand-secondary flex flex-col relative">
       {/* Progress Tracker */}
       <ProgressTracker messages={messages} />
 
