@@ -64,7 +64,12 @@ const AudioVisualizer = ({
   const pulseScale = 1 + Math.sin(pulsePhase) * (isSpeaking ? 0.12 : 0.05)
 
   return (
-    <div className="relative">
+    <motion.div 
+      className="relative"
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
       {/* Subtle ripple effect - only when speaking */}
       {isSpeaking && (
         <motion.div
@@ -118,7 +123,7 @@ const AudioVisualizer = ({
           ease: "easeOut"
         }}
       />
-    </div>
+    </motion.div>
   )
 }
 
@@ -132,7 +137,17 @@ export default function InterviewInterface({
   isConnected
 }: InterviewInterfaceProps) {
   const [userMessageTrigger, setUserMessageTrigger] = useState(0)
+  const [isVisualizerInitialized, setIsVisualizerInitialized] = useState(false)
   const animatedCurrentText = useTypingEffect(currentText, 30)
+
+  // Mark visualizer as initialized after fade-in completes
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisualizerInitialized(true)
+    }, 800) // Match the visualizer fade-in duration
+
+    return () => clearTimeout(timer)
+  }, [])
 
   // Filter out system messages for display
   const conversationMessages = messages.filter(
@@ -194,16 +209,21 @@ export default function InterviewInterface({
       {/* Bottom Controls */}
       <div className="absolute bottom-0 left-0 right-0 p-6">
         <div className="flex items-center justify-center">
-          {/* End interview button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={onEndInterview}
-            className="flex items-center space-x-2 px-4 py-3 bg-red-100 text-red-700 hover:bg-red-200 rounded-xl font-medium transition-colors"
-          >
-            <Square className="w-4 h-4" />
-            <span>End Interview</span>
-          </motion.button>
+          {/* End interview button - only show after visualizer is initialized */}
+          {isVisualizerInitialized && (
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={onEndInterview}
+              className="flex items-center space-x-2 px-4 py-3 bg-red-100 text-red-700 hover:bg-red-200 rounded-xl font-medium transition-colors"
+            >
+              <Square className="w-4 h-4" />
+              <span>End Interview</span>
+            </motion.button>
+          )}
         </div>
       </div>
     </div>

@@ -15,6 +15,15 @@ export default function WelcomeScreen({ onStartInterview }: WelcomeScreenProps) 
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null)
   const [showInstallButton, setShowInstallButton] = useState(false)
   const [showStickyButton, setShowStickyButton] = useState(false)
+  const [isFadingOut, setIsFadingOut] = useState(false)
+
+  const handleStartInterview = () => {
+    setIsFadingOut(true)
+    // Delay the actual phase change to allow fade-out animation
+    setTimeout(() => {
+      onStartInterview()
+    }, 500)
+  }
 
   useEffect(() => {
     // Detect mobile platform
@@ -69,8 +78,8 @@ export default function WelcomeScreen({ onStartInterview }: WelcomeScreenProps) 
       <div className="min-h-screen bg-brand-secondary flex items-center justify-center p-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          animate={{ opacity: isFadingOut ? 0 : 1, y: 0 }}
+          transition={{ duration: isFadingOut ? 0.5 : 0.6 }}
           className="bg-white rounded-2xl shadow-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
         >
           {/* Header */}
@@ -98,7 +107,7 @@ export default function WelcomeScreen({ onStartInterview }: WelcomeScreenProps) 
             transition={{ delay: 0.3, duration: 0.5 }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            onClick={onStartInterview}
+            onClick={handleStartInterview}
             className="btn-primary w-full py-4 px-6 rounded-xl font-semibold text-lg flex items-center justify-center space-x-2 shadow-lg mb-6"
           >
             <span>Start Interview</span>
@@ -231,7 +240,7 @@ export default function WelcomeScreen({ onStartInterview }: WelcomeScreenProps) 
           className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200 shadow-lg z-50 md:hidden"
         >
           <button
-            onClick={onStartInterview}
+            onClick={handleStartInterview}
             className="btn-primary w-full py-3 px-6 rounded-xl font-semibold flex items-center justify-center space-x-2"
           >
             <span>Start Interview</span>

@@ -7,7 +7,10 @@ export default async function handler(req, res) {
   
   try {
     // Forward the request to your local development server
-    const response = await fetch(`${LOCAL_DEV_URL}/api/get-next-question`, {
+    // Check if it's a get-section call or legacy get-next-question
+    const endpoint = req.body && req.body.section_name ? '/api/get-section' : '/api/get-next-question';
+    
+    const response = await fetch(`${LOCAL_DEV_URL}${endpoint}`, {
       method: req.method,
       headers: {
         'Content-Type': 'application/json',

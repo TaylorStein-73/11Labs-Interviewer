@@ -21,6 +21,7 @@ interface Category {
   isActive: boolean
   isCompleted: boolean
   order: number
+  keywords: string[]
 }
 
 interface InterviewScript {
@@ -35,6 +36,7 @@ interface InterviewScript {
     section: string
     question: string
     category: string
+    title?: string
   }>
 }
 
@@ -57,6 +59,62 @@ async function fetchInterviewScript(): Promise<InterviewScript | null> {
   }
 }
 
+function extractKeywordsFromQuestions(questions: Record<string, any>, sectionId: string): string[] {
+  const keywords = new Set<string>()
+  
+  // Extract keywords from questions belonging to this section
+  Object.values(questions).forEach((question: any) => {
+    if (question.section === sectionId) {
+      // Extract keywords from question text
+      const questionText = question.question?.toLowerCase() || ''
+      const titleText = question.title?.toLowerCase() || ''
+      const categoryText = question.category?.toLowerCase() || ''
+      
+      // Add meaningful words (filter out common words)
+      const meaningfulWords = [...questionText.split(/\s+/), ...titleText.split(/\s+/), ...categoryText.split(/\s+/)]
+        .filter(word => 
+          word.length > 3 && 
+          !['have', 'been', 'your', 'what', 'when', 'where', 'were', 'with', 'that', 'this', 'they', 'them', 'from', 'about', 'would', 'could', 'should', 'after', 'before', 'during', 'since'].includes(word)
+        )
+        .map(word => word.replace(/[^a-zA-Z]/g, '')) // Remove punctuation
+        .filter(word => word.length > 2)
+      
+      meaningfulWords.forEach(word => keywords.add(word))
+    }
+  })
+  
+  // Add section-specific keywords based on section ID
+  const sectionKeywords = extractSectionKeywords(sectionId)
+  sectionKeywords.forEach(keyword => keywords.add(keyword))
+  
+  return Array.from(keywords)
+}
+
+function extractSectionKeywords(sectionId: string): string[] {
+  // Extract base keywords from section ID
+  const baseKeywords = sectionId.split('_').map(word => word.toLowerCase())
+  
+  // Add common variations and synonyms
+  const keywordMap: Record<string, string[]> = {
+    pregnancy: ['pregnant', 'pregnancies', 'birth', 'delivery', 'gestational', 'obstetric'],
+    fertility: ['fertility', 'genetic', 'carrier', 'screening', 'diagnostic', 'testing'],
+    lifestyle: ['lifestyle', 'substance', 'smoking', 'alcohol', 'drug', 'tobacco'],
+    interview: ['interview', 'complete', 'completion', 'thank', 'recorded', 'review'],
+    history: ['history', 'medical', 'health'],
+    testing: ['testing', 'test', 'tests', 'screening', 'screen']
+  }
+  
+  const keywords: string[] = [...baseKeywords]
+  
+  baseKeywords.forEach(baseWord => {
+    if (keywordMap[baseWord]) {
+      keywords.push(...keywordMap[baseWord])
+    }
+  })
+  
+  return keywords
+}
+
 function extractCategoriesFromScript(script: InterviewScript): Category[] {
   if (!script.sections) return []
   
@@ -64,15 +122,19 @@ function extractCategoriesFromScript(script: InterviewScript): Category[] {
   let order = 1
   
   for (const [sectionId, section] of Object.entries(script.sections)) {
-    // Extract the main category from the first word of question IDs
-    const mainCategory = sectionId.split('_')[0] // e.g., 'pregnancy_history' -> 'pregnancy'
+    // Extract the main category from the section ID
+    const mainCategory = sectionId.split('_')[0]
+    
+    // Generate keywords dynamically from the script
+    const keywords = extractKeywordsFromQuestions(script.questions, sectionId)
     
     categories.push({
       id: mainCategory,
       name: section.title,
       isActive: false,
       isCompleted: false,
-      order: order++
+      order: order++,
+      keywords: keywords
     })
   }
   
@@ -85,29 +147,35 @@ function detectCurrentCategory(messages: ConversationMessage[], categories: Cate
   // Look at the most recent assistant messages to determine current category
   const recentAssistantMessages = messages
     .filter(msg => msg.role === 'assistant')
-    .slice(-2)
+    .slice(-3) // Look at more recent messages for better detection
     .map(msg => msg.content.toLowerCase())
   
   if (recentAssistantMessages.length === 0) return null
   
   const recentText = recentAssistantMessages.join(' ')
   
-  // Generate keywords based on category names and common terms
-  const categoryKeywords = {
-    pregnancy: ['pregnant', 'pregnancy', 'pregnancies', 'birth', 'miscarriage', 'stillbirth', 'ectopic', 'termination', 'gestational', 'delivery', 'vaginal', 'c-section', 'cerclage', 'diabetes', 'blood pressure', 'cholestasis', 'blood clots', 'live birth', 'outcome'],
-    lifestyle: ['smoke', 'smoking', 'alcohol', 'drink', 'cannabis', 'drug', 'substance', 'tobacco', 'nicotine', 'vape', 'recreational', 'cigarettes', 'drinks per week'],
-    interview: ['thank you', 'complete', 'recorded', 'review', 'dr. stein', 'information for dr', 'look forward', 'today']
-  }
+  // Score each category based on keyword matches
+  const categoryScores: { [key: string]: number } = {}
   
-  // Check categories in reverse order (most recent first)
-  for (const category of [...categories].reverse()) {
-    const keywords = categoryKeywords[category.id as keyof typeof categoryKeywords] || []
-    if (keywords.some(keyword => recentText.includes(keyword))) {
-      return category.id
-    }
-  }
+  categories.forEach(category => {
+    let score = 0
+    category.keywords.forEach(keyword => {
+      if (recentText.includes(keyword)) {
+        // Weight longer keywords more heavily
+        score += keyword.length > 5 ? 2 : 1
+      }
+    })
+    categoryScores[category.id] = score
+  })
   
-  return null
+  // Find the category with the highest score
+  const maxScore = Math.max(...Object.values(categoryScores))
+  if (maxScore === 0) return null
+  
+  const bestCategory = Object.entries(categoryScores)
+    .find(([_, score]) => score === maxScore)?.[0]
+  
+  return bestCategory || null
 }
 
 function detectCompletedCategories(messages: ConversationMessage[], categories: Category[]): Set<string> {
@@ -118,47 +186,48 @@ function detectCompletedCategories(messages: ConversationMessage[], categories: 
   
   if (assistantMessages.length === 0) return completed
   
-  // Generate keywords based on category names
-  const categoryKeywords = {
-    pregnancy: ['pregnant', 'pregnancy', 'pregnancies', 'birth', 'miscarriage', 'stillbirth', 'ectopic', 'termination', 'gestational', 'delivery', 'vaginal', 'c-section', 'cerclage', 'diabetes', 'blood pressure', 'cholestasis', 'blood clots', 'live birth', 'outcome'],
-    lifestyle: ['smoke', 'smoking', 'alcohol', 'drink', 'cannabis', 'drug', 'substance', 'tobacco', 'nicotine', 'vape', 'recreational', 'cigarettes', 'drinks per week'],
-    interview: ['thank you', 'complete', 'recorded', 'review', 'dr. stein', 'information for dr', 'look forward', 'today']
-  }
-  
-  // Track which categories have been encountered
-  const categoryEncountered = new Map<string, boolean>()
-  let currentCategoryOrder = 0
+  // Track which categories have been encountered and when
+  const categoryEncounters: { [key: string]: number[] } = {}
   
   // Analyze messages chronologically to understand flow
-  for (const message of assistantMessages) {
-    for (const category of categories) {
-      const keywords = categoryKeywords[category.id as keyof typeof categoryKeywords] || []
-      if (keywords.some(keyword => message.includes(keyword))) {
-        categoryEncountered.set(category.id, true)
-        currentCategoryOrder = Math.max(currentCategoryOrder, category.order)
+  assistantMessages.forEach((message, index) => {
+    categories.forEach(category => {
+      const matchCount = category.keywords.filter(keyword => 
+        message.includes(keyword)
+      ).length
+      
+      if (matchCount > 0) {
+        if (!categoryEncounters[category.id]) {
+          categoryEncounters[category.id] = []
+        }
+        categoryEncounters[category.id].push(index)
       }
-    }
-  }
+    })
+  })
   
-  // Mark categories as completed based on progression
-  for (const category of categories) {
-    if (categoryEncountered.has(category.id) && currentCategoryOrder > category.order) {
+  // Determine completion based on progression
+  const currentCategory = detectCurrentCategory(messages, categories)
+  const currentCategoryOrder = categories.find(cat => cat.id === currentCategory)?.order || 0
+  
+  // Mark categories as completed if:
+  // 1. They have been encountered AND
+  // 2. We've moved to a later category in the sequence
+  categories.forEach(category => {
+    if (categoryEncounters[category.id] && 
+        categoryEncounters[category.id].length > 0 && 
+        currentCategoryOrder > category.order) {
       completed.add(category.id)
     }
-  }
+  })
   
-  // Special case: if we're in completion phase, mark previous categories as completed
-  if (categoryEncountered.has('interview')) {
+  // Special case: if we're in the final category (completion), mark all previous as completed
+  const finalCategory = categories.find(cat => cat.order === Math.max(...categories.map(c => c.order)))
+  if (finalCategory && currentCategory === finalCategory.id) {
     categories.forEach(cat => {
-      if (cat.order < 3) { // Assuming interview is the last category
+      if (cat.order < finalCategory.order) {
         completed.add(cat.id)
       }
     })
-  }
-  
-  // If we've progressed to lifestyle, pregnancy should be completed
-  if (categoryEncountered.has('lifestyle') && currentCategoryOrder > 1) {
-    completed.add('pregnancy')
   }
   
   return completed
@@ -174,6 +243,7 @@ export default function ProgressTracker({ messages }: ProgressTrackerProps) {
       const script = await fetchInterviewScript()
       if (script) {
         const extractedCategories = extractCategoriesFromScript(script)
+        console.log('Extracted categories:', extractedCategories) // Debug log
         setScriptCategories(extractedCategories)
       }
     }
@@ -186,6 +256,9 @@ export default function ProgressTracker({ messages }: ProgressTrackerProps) {
     
     const currentCategory = detectCurrentCategory(messages, scriptCategories)
     const completedCategories = detectCompletedCategories(messages, scriptCategories)
+    
+    console.log('Current category:', currentCategory) // Debug log
+    console.log('Completed categories:', Array.from(completedCategories)) // Debug log
     
     const updatedCategories = scriptCategories.map(cat => ({
       ...cat,

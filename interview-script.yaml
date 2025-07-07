@@ -6,20 +6,27 @@
 # - pregnancy.screening, pregnancy.outcomes.live_birth, etc.
 # - Self-documenting and easily searchable
 #
+# ONE QUESTION AT A TIME PRINCIPLE:
+# - Each question asks only one thing to avoid confusion
+# - Complex topics are broken into sequential sub-questions
+# - Clear parent-child relationships maintain logical flow
+# - Estimated times are realistic for single-focus questions
+#
 # INTERVIEW FLOW OVERVIEW:
 # pregnancy.screening (Ever pregnant?) 
 #   ├── pregnancy.count (How many?) → pregnancy.outcomes (Pregnancy loop)
-#   │   ├── pregnancy.outcomes.live_birth
-#   │   ├── pregnancy.outcomes.miscarriage 
-#   │   ├── pregnancy.outcomes.stillbirth
-#   │   ├── pregnancy.outcomes.ectopic
-#   │   ├── pregnancy.outcomes.termination
+#   │   ├── pregnancy.outcomes.live_birth → .weight → .complications
+#   │   ├── pregnancy.outcomes.miscarriage → .management → .testing
+#   │   ├── pregnancy.outcomes.stillbirth → .cause
+#   │   ├── pregnancy.outcomes.ectopic → .treatment
+#   │   ├── pregnancy.outcomes.termination → .reason → .method
 #   │   └── pregnancy.additional_check → Loop or pregnancy.global_history
-#   └── pregnancy.global_history → lifestyle.substance_screening
-# lifestyle.substance_screening
-#   ├── lifestyle.smoking_details
-#   ├── lifestyle.alcohol_details
-#   └── lifestyle.drug_details
+#   └── pregnancy.global_history (combined complications screening & details) → fertility.testing_screening
+# fertility.testing_screening (combined diagnostic screening & details)
+#   └── fertility.genetic_screening (combined genetic screening & details) → lifestyle.substance_screening
+# lifestyle.substance_screening (tobacco) → .details → .duration
+#   ├── lifestyle.alcohol_screening (combined alcohol screening & quantity)
+#   └── lifestyle.drug_screening (combined drug screening & details) → interview.completion
 # interview.completion
 # ================================================================================
 
@@ -27,7 +34,10 @@ metadata:
   version: "2.0"
   last_updated: "2025-01-01"
   estimated_duration: "8-12 minutes"
-  total_questions: 16
+  total_questions: 26
+  section_order: ["pregnancy_history", "fertility_testing", "lifestyle_screening", "interview_closure"]
+  script_type: "medical_history"
+  domain: "reproductive_health"
 
 sections:
   pregnancy_history:
@@ -35,6 +45,12 @@ sections:
     description: "Comprehensive screening and detailed pregnancy history"
     base_questions: ["pregnancy.screening"]
     estimated_time: "5-8 minutes"
+  
+  fertility_testing:
+    title: "Fertility & Genetic Testing"
+    description: "Screening for fertility diagnostic testing and genetic carrier screening"
+    base_questions: ["fertility.testing_screening"]
+    estimated_time: "2-3 minutes"
   
   lifestyle_screening:
     title: "Lifestyle & Substance Use"
@@ -57,12 +73,12 @@ questions:
     id: "pregnancy.screening"
     type: "branching"
     title: "Initial Pregnancy Screening"
-    question: "Have you ever been pregnant? TESTING"
+    question: "Have you ever been pregnant?"
     category: "pregnancy_screening"
     section: "pregnancy_history"
     required: true
     estimated_time: "30 seconds"
-    follow_up: "If yes, pregnancy.count. If no, lifestyle.substance_screening"
+    follow_up: "If yes, pregnancy.count. If no, fertility.testing_screening"
     notes: "Gateway question - determines if pregnancy section is needed"
   
   "pregnancy.count":
@@ -94,67 +110,171 @@ questions:
   "pregnancy.outcomes.live_birth":
     id: "pregnancy.outcomes.live_birth"
     type: "detail"
-    title: "Live Birth Details"
-    question: "Since you had a live birth, can you tell me: Was the delivery vaginal or via C-section? Do you remember the birth weight? Were there any complications during delivery or with the baby?"
-    category: "live_birth_details"
+    title: "Live Birth - Delivery Method"
+    question: "Since you had a live birth, was the delivery vaginal or via C-section?"
+    category: "live_birth_delivery"
     section: "pregnancy_history"
     parent: "pregnancy.outcomes"
     required: true
-    estimated_time: "2 minutes"
-    follow_up: "After collecting live birth details, go to pregnancy.additional_check"
-    notes: "Collect delivery method, birth weight, complications"
+    estimated_time: "30 seconds"
+    follow_up: "After collecting delivery method, go to pregnancy.outcomes.live_birth.weight"
+    notes: "First question in live birth sequence - delivery method only"
+  
+  "pregnancy.outcomes.live_birth.weight":
+    id: "pregnancy.outcomes.live_birth.weight"
+    type: "detail"
+    title: "Live Birth - Birth Weight"
+    question: "Do you remember the birth weight of your baby?"
+    category: "live_birth_weight"
+    section: "pregnancy_history"
+    parent: "pregnancy.outcomes.live_birth"
+    required: true
+    estimated_time: "30 seconds"
+    follow_up: "After collecting birth weight, go to pregnancy.outcomes.live_birth.complications"
+    notes: "Second question in live birth sequence - birth weight only"
+  
+  "pregnancy.outcomes.live_birth.complications":
+    id: "pregnancy.outcomes.live_birth.complications"
+    type: "detail"
+    title: "Live Birth - Complications"
+    question: "Were there any complications during delivery or with the baby?"
+    category: "live_birth_complications"
+    section: "pregnancy_history"
+    parent: "pregnancy.outcomes.live_birth.weight"
+    required: true
+    estimated_time: "1 minute"
+    follow_up: "After collecting complications, go to pregnancy.additional_check"
+    notes: "Third question in live birth sequence - complications only"
   
   "pregnancy.outcomes.miscarriage":
     id: "pregnancy.outcomes.miscarriage"
     type: "detail"
-    title: "Miscarriage Details"
-    question: "For your miscarriage, can you tell me at what gestational age it occurred? How was your miscarriage managed? Were the products of conception tested?"
-    category: "miscarriage_details"
+    title: "Miscarriage - Gestational Age"
+    question: "For your miscarriage, at what gestational age did it occur?"
+    category: "miscarriage_gestational_age"
     section: "pregnancy_history"
     parent: "pregnancy.outcomes"
     required: true
-    estimated_time: "2 minutes"
-    follow_up: "After collecting miscarriage details, go to pregnancy.additional_check"
-    notes: "Collect gestational age, management, testing"
+    estimated_time: "30 seconds"
+    follow_up: "After collecting gestational age, go to pregnancy.outcomes.miscarriage.management"
+    notes: "First question in miscarriage sequence - gestational age only"
+  
+  "pregnancy.outcomes.miscarriage.management":
+    id: "pregnancy.outcomes.miscarriage.management"
+    type: "detail"
+    title: "Miscarriage - Management"
+    question: "How was your miscarriage managed?"
+    category: "miscarriage_management"
+    section: "pregnancy_history"
+    parent: "pregnancy.outcomes.miscarriage"
+    required: true
+    estimated_time: "30 seconds"
+    follow_up: "After collecting management details, go to pregnancy.outcomes.miscarriage.testing"
+    notes: "Second question in miscarriage sequence - management only"
+  
+  "pregnancy.outcomes.miscarriage.testing":
+    id: "pregnancy.outcomes.miscarriage.testing"
+    type: "detail"
+    title: "Miscarriage - Testing"
+    question: "Were the products of conception tested?"
+    category: "miscarriage_testing"
+    section: "pregnancy_history"
+    parent: "pregnancy.outcomes.miscarriage.management"
+    required: true
+    estimated_time: "30 seconds"
+    follow_up: "After collecting testing information, go to pregnancy.additional_check"
+    notes: "Third question in miscarriage sequence - testing only"
   
   "pregnancy.outcomes.stillbirth":
     id: "pregnancy.outcomes.stillbirth"
     type: "detail"
-    title: "Stillbirth Details"
-    question: "For your stillbirth, can you tell me at what gestational age it occurred? Was a cause determined?"
-    category: "stillbirth_details"
+    title: "Stillbirth - Gestational Age"
+    question: "For your stillbirth, at what gestational age did it occur?"
+    category: "stillbirth_gestational_age"
     section: "pregnancy_history"
     parent: "pregnancy.outcomes"
     required: true
-    estimated_time: "2 minutes"
-    follow_up: "After collecting stillbirth details, go to pregnancy.additional_check"
-    notes: "Collect gestational age and cause if known"
+    estimated_time: "30 seconds"
+    follow_up: "After collecting gestational age, go to pregnancy.outcomes.stillbirth.cause"
+    notes: "First question in stillbirth sequence - gestational age only"
+  
+  "pregnancy.outcomes.stillbirth.cause":
+    id: "pregnancy.outcomes.stillbirth.cause"
+    type: "detail"
+    title: "Stillbirth - Cause"
+    question: "Was a cause determined for your stillbirth?"
+    category: "stillbirth_cause"
+    section: "pregnancy_history"
+    parent: "pregnancy.outcomes.stillbirth"
+    required: true
+    estimated_time: "1 minute"
+    follow_up: "After collecting cause information, go to pregnancy.additional_check"
+    notes: "Second question in stillbirth sequence - cause only"
   
   "pregnancy.outcomes.ectopic":
     id: "pregnancy.outcomes.ectopic"
     type: "detail"
-    title: "Ectopic Pregnancy Details"
-    question: "For your ectopic pregnancy, can you tell me where it was located? How was it treated?"
-    category: "ectopic_details"
+    title: "Ectopic Pregnancy - Location"
+    question: "For your ectopic pregnancy, where was it located?"
+    category: "ectopic_location"
     section: "pregnancy_history"
     parent: "pregnancy.outcomes"
     required: true
-    estimated_time: "2 minutes"
-    follow_up: "After collecting ectopic details, go to pregnancy.additional_check"
-    notes: "Collect location and treatment method"
+    estimated_time: "30 seconds"
+    follow_up: "After collecting location, go to pregnancy.outcomes.ectopic.treatment"
+    notes: "First question in ectopic sequence - location only"
+  
+  "pregnancy.outcomes.ectopic.treatment":
+    id: "pregnancy.outcomes.ectopic.treatment"
+    type: "detail"
+    title: "Ectopic Pregnancy - Treatment"
+    question: "How was your ectopic pregnancy treated?"
+    category: "ectopic_treatment"
+    section: "pregnancy_history"
+    parent: "pregnancy.outcomes.ectopic"
+    required: true
+    estimated_time: "1 minute"
+    follow_up: "After collecting treatment information, go to pregnancy.additional_check"
+    notes: "Second question in ectopic sequence - treatment only"
   
   "pregnancy.outcomes.termination":
     id: "pregnancy.outcomes.termination"
     type: "detail"
-    title: "Termination Details"
-    question: "For your termination, can you tell me at what gestational age it occurred? What was the reason? What method was used?"
-    category: "termination_details"
+    title: "Termination - Gestational Age"
+    question: "For your termination, at what gestational age did it occur?"
+    category: "termination_gestational_age"
     section: "pregnancy_history"
     parent: "pregnancy.outcomes"
     required: true
-    estimated_time: "2 minutes"
-    follow_up: "After collecting termination details, go to pregnancy.additional_check"
-    notes: "Collect gestational age, reason, method - sensitive topic"
+    estimated_time: "30 seconds"
+    follow_up: "After collecting gestational age, go to pregnancy.outcomes.termination.reason"
+    notes: "First question in termination sequence - gestational age only - sensitive topic"
+  
+  "pregnancy.outcomes.termination.reason":
+    id: "pregnancy.outcomes.termination.reason"
+    type: "detail"
+    title: "Termination - Reason"
+    question: "What was the reason for your termination?"
+    category: "termination_reason"
+    section: "pregnancy_history"
+    parent: "pregnancy.outcomes.termination"
+    required: true
+    estimated_time: "1 minute"
+    follow_up: "After collecting reason, go to pregnancy.outcomes.termination.method"
+    notes: "Second question in termination sequence - reason only - sensitive topic"
+  
+  "pregnancy.outcomes.termination.method":
+    id: "pregnancy.outcomes.termination.method"
+    type: "detail"
+    title: "Termination - Method"
+    question: "What method was used for your termination?"
+    category: "termination_method"
+    section: "pregnancy_history"
+    parent: "pregnancy.outcomes.termination.reason"
+    required: true
+    estimated_time: "30 seconds"
+    follow_up: "After collecting method information, go to pregnancy.additional_check"
+    notes: "Third question in termination sequence - method only - sensitive topic"
   
   "pregnancy.additional_check":
     id: "pregnancy.additional_check"
@@ -173,69 +293,111 @@ questions:
     id: "pregnancy.global_history"
     type: "detail"
     title: "Global Pregnancy History"
-    question: "Looking across all your pregnancies, did you have gestational diabetes, high blood pressure, cholestasis, blood clots, or did you need a cerclage during any pregnancy?"
-    category: "global_pregnancy_history"
+    question: "Looking across all your pregnancies, did you have any complications such as gestational diabetes, high blood pressure, cholestasis, or blood clots? Please tell me about any conditions you experienced."
+    category: "global_pregnancy_combined"
     section: "pregnancy_history"
     parent: "pregnancy.screening"
     required: true
     estimated_time: "1 minute"
-    follow_up: "After collecting global pregnancy history, go to lifestyle.substance_screening"
-    notes: "Collect complications that span multiple pregnancies"
+    follow_up: "After collecting pregnancy complications, go to fertility.testing_screening"
+    notes: "Combined pregnancy complications screening and details in one comprehensive question"
   
   # ============================================================================
-  # SECTION 2: LIFESTYLE & SUBSTANCE USE
+  # SECTION 2: FERTILITY & GENETIC TESTING
+  # ============================================================================
+  
+  "fertility.testing_screening":
+    id: "fertility.testing_screening"
+    type: "branching"
+    title: "Fertility Diagnostic Testing"
+    question: "Have you had fertility diagnostic testing such as hormone tests, ovarian reserve testing, or imaging studies? If yes, please tell me what tests you've had."
+    category: "fertility_diagnostic_combined"
+    section: "fertility_testing"
+    required: true
+    estimated_time: "1 minute"
+    follow_up: "After collecting fertility diagnostic information, go to fertility.genetic_screening"
+    notes: "Combined fertility diagnostic screening and details in one question"
+  
+  "fertility.genetic_screening":
+    id: "fertility.genetic_screening"
+    type: "detail"
+    title: "Genetic Carrier Screening"
+    question: "Have you had genetic carrier screening for conditions like cystic fibrosis, spinal muscular atrophy, or other genetic conditions? If yes, please tell me what screening you've had."
+    category: "fertility_genetic_combined"
+    section: "fertility_testing"
+    parent: "fertility.testing_screening"
+    required: true
+    estimated_time: "1 minute"
+    follow_up: "After collecting genetic screening information, go to lifestyle.substance_screening"
+    notes: "Combined genetic carrier screening and details in one question"
+  
+  # ============================================================================
+  # SECTION 3: LIFESTYLE & SUBSTANCE USE
   # ============================================================================
   
   "lifestyle.substance_screening":
     id: "lifestyle.substance_screening"
     type: "branching"
-    title: "Substance Use Screening"
-    question: "Do you currently smoke, drink alcohol, or use cannabis or recreational drugs?"
-    category: "substance_screening"
+    title: "Tobacco Use Screening"
+    question: "Do you currently smoke cigarettes, vape, or use any tobacco or nicotine products?"
+    category: "tobacco_screening"
     section: "lifestyle_screening"
     required: true
     estimated_time: "30 seconds"
-    follow_up: "If they use any substances, ask specific follow-ups starting with lifestyle.smoking_details for smoking, lifestyle.alcohol_details for alcohol, lifestyle.drug_details for drugs. If no substances, go to interview.completion"
-    notes: "Can be asked regardless of pregnancy history - universal screening"
+    follow_up: "If yes, go to lifestyle.smoking_details. If no, go to lifestyle.alcohol_screening"
+    notes: "Direct tobacco/nicotine screening - no redundant general question"
   
   "lifestyle.smoking_details":
     id: "lifestyle.smoking_details"
     type: "detail"
-    title: "Smoking Details"
-    question: "You mentioned you smoke. Do you smoke or vape tobacco or nicotine products? If yes, how many cigarettes or times per day and for how many years?"
-    category: "smoking_details"
+    title: "Tobacco Use - Quantity"
+    question: "How many cigarettes do you smoke per day, or how many times per day do you vape?"
+    category: "smoking_quantity"
     section: "lifestyle_screening"
     parent: "lifestyle.substance_screening"
-    required: false
-    estimated_time: "1 minute"
-    follow_up: "After collecting smoking details, go to lifestyle.alcohol_details to ask about alcohol"
-    notes: "Quantify smoking - cigarettes/day, duration, vaping"
+    required: true
+    estimated_time: "30 seconds"
+    follow_up: "After collecting quantity, go to lifestyle.smoking_duration"
+    notes: "Quantify daily tobacco/nicotine use"
   
-  "lifestyle.alcohol_details":
-    id: "lifestyle.alcohol_details"
+  "lifestyle.smoking_duration":
+    id: "lifestyle.smoking_duration"
     type: "detail"
-    title: "Alcohol Use Details"
-    question: "Regarding alcohol, do you drink alcohol? If yes, how many alcoholic drinks do you have per week?"
-    category: "alcohol_details"
+    title: "Tobacco Use - Duration"
+    question: "For how many years have you been smoking or vaping?"
+    category: "smoking_duration"
     section: "lifestyle_screening"
-    parent: "lifestyle.substance_screening"
-    required: false
-    estimated_time: "1 minute"
-    follow_up: "After collecting alcohol details, go to lifestyle.drug_details to ask about drugs"
-    notes: "Quantify alcohol - drinks per week, pattern"
+    parent: "lifestyle.smoking_details"
+    required: true
+    estimated_time: "30 seconds"
+    follow_up: "After collecting duration, go to lifestyle.alcohol_screening"
+    notes: "Collect duration of tobacco/nicotine habit"
   
-  "lifestyle.drug_details":
-    id: "lifestyle.drug_details"
-    type: "detail"
-    title: "Recreational Drug Use Details"
-    question: "Do you use cannabis or recreational drugs? If yes, please specify the substances and how frequently you use them."
-    category: "drug_details"
+  "lifestyle.alcohol_screening":
+    id: "lifestyle.alcohol_screening"
+    type: "branching"
+    title: "Alcohol Use Screening"
+    question: "Do you drink alcohol? If yes, how many alcoholic drinks do you have per week?"
+    category: "alcohol_screening_and_quantity"
     section: "lifestyle_screening"
     parent: "lifestyle.substance_screening"
-    required: false
+    required: true
     estimated_time: "1 minute"
-    follow_up: "After collecting drug use details, go to interview.completion to complete the interview"
-    notes: "Specify substances and frequency - sensitive topic"
+    follow_up: "After collecting alcohol information, go to lifestyle.drug_screening"
+    notes: "Combined alcohol screening and quantity collection in one question"
+  
+  "lifestyle.drug_screening":
+    id: "lifestyle.drug_screening"
+    type: "detail"
+    title: "Recreational Drug Use Screening"
+    question: "Do you use cannabis or recreational drugs? If yes, please tell me what substances and how frequently you use them."
+    category: "drug_screening_and_details"
+    section: "lifestyle_screening"
+    parent: "lifestyle.substance_screening"
+    required: true
+    estimated_time: "1 minute"
+    follow_up: "After collecting drug information, go to interview.completion"
+    notes: "Combined drug screening and details collection in one question - sensitive topic"
   
   # ============================================================================
   # SECTION 3: INTERVIEW COMPLETION
@@ -251,7 +413,7 @@ questions:
     required: true
     estimated_time: "30 seconds"
     follow_up: "Interview complete - no further questions"
-    notes: "Warm closure, confirm information recorded, set expectations"
+    notes: "Warm closure, confirm information recorded, set expectations. Immediately end the interview. Do not ask any more questions."
 
 # ============================================================================
 # QUESTION TYPE DEFINITIONS
