@@ -12,6 +12,12 @@
 # - Clear parent-child relationships maintain logical flow
 # - Estimated times are realistic for single-focus questions
 #
+# SECTION TRANSITION RULES:
+# - Agent calls get_section() ONLY at section boundaries (4 times total)
+# - Look for "CALL get_section()" in follow_up instructions
+# - Work through ALL questions within a section before transitioning
+# - Questions marked "SECTION TRANSITION POINT" indicate where to call next section
+#
 # INTERVIEW FLOW OVERVIEW:
 # pregnancy.screening (Ever pregnant?) 
 #   ├── pregnancy.count (How many?) → pregnancy.outcomes (Pregnancy loop)
@@ -78,7 +84,7 @@ questions:
     section: "pregnancy_history"
     required: true
     estimated_time: "30 seconds"
-    follow_up: "If yes, pregnancy.count. If no, fertility.testing_screening"
+    follow_up: "If yes, pregnancy.count. If no, CALL get_section('fertility_testing') to move to next section"
     notes: "Gateway question - determines if pregnancy section is needed"
   
   "pregnancy.count":
@@ -299,8 +305,8 @@ questions:
     parent: "pregnancy.screening"
     required: true
     estimated_time: "1 minute"
-    follow_up: "After collecting pregnancy complications, go to fertility.testing_screening"
-    notes: "Combined pregnancy complications screening and details in one comprehensive question"
+    follow_up: "After collecting pregnancy complications, CALL get_section('fertility_testing') to move to next section"
+    notes: "Combined pregnancy complications screening and details in one comprehensive question - SECTION TRANSITION POINT"
   
   # ============================================================================
   # SECTION 2: FERTILITY & GENETIC TESTING
@@ -328,8 +334,8 @@ questions:
     parent: "fertility.testing_screening"
     required: true
     estimated_time: "1 minute"
-    follow_up: "After collecting genetic screening information, go to lifestyle.substance_screening"
-    notes: "Combined genetic carrier screening and details in one question"
+    follow_up: "After collecting genetic screening information, CALL get_section('lifestyle_screening') to move to next section"
+    notes: "Combined genetic carrier screening and details in one question - SECTION TRANSITION POINT"
   
   # ============================================================================
   # SECTION 3: LIFESTYLE & SUBSTANCE USE
@@ -396,8 +402,8 @@ questions:
     parent: "lifestyle.substance_screening"
     required: true
     estimated_time: "1 minute"
-    follow_up: "After collecting drug information, go to interview.completion"
-    notes: "Combined drug screening and details collection in one question - sensitive topic"
+    follow_up: "After collecting drug information, CALL get_section('interview_closure') to move to final section"
+    notes: "Combined drug screening and details collection in one question - sensitive topic - SECTION TRANSITION POINT"
   
   # ============================================================================
   # SECTION 3: INTERVIEW COMPLETION
@@ -412,8 +418,8 @@ questions:
     section: "interview_closure"
     required: true
     estimated_time: "30 seconds"
-    follow_up: "Interview complete - no further questions"
-    notes: "Warm closure, confirm information recorded, set expectations. Immediately end the interview. Do not ask any more questions."
+    follow_up: "Interview complete - no further questions - DO NOT CALL get_section() - END INTERVIEW"
+    notes: "Warm closure, confirm information recorded, set expectations. Immediately end the interview. Do not ask any more questions. FINAL SECTION - NO MORE TRANSITIONS."
 
 # ============================================================================
 # QUESTION TYPE DEFINITIONS
